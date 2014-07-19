@@ -1,0 +1,72 @@
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  });
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable">
+  <div>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  </div>
+  <div>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  </div>
+  <div>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  </div>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+</ul>
+ 
+ 
+  <style>
+  #sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-right: 10px; }
+  #sortable1 li, #sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+  </style>
+  <script>
+  $(function() {
+    $( ".sortable" ).sortable({
+      connectWith: ".sortable"
+    }).disableSelection();
+  });
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable1" class="sortable connectedSortable">
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+</ul>
+ 
+<ul id="sortable2" class="sortable connectedSortable">
+  <li class="ui-state-highlight">Item 1</li>
+  <li class="ui-state-highlight">Item 2</li>
+  <li class="ui-state-highlight">Item 3</li>
+  <li class="ui-state-highlight">Item 4</li>
+  <li class="ui-state-highlight">Item 5</li>
+</ul>
+ 
+ 
+</body>
+</html>
+</body>
+</html>
