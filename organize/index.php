@@ -5,12 +5,13 @@
 <?php $tsqli->fetchStyle()->renderStyle(); ?>
 <?php $var = $tsqli->getVariables_(); ?>
 <?php $types = $tsqli->getTypes_() ?>
+<?php $root = ( isset($_GET['root']) ) ? $_GET['root'] : 0; ?>
 </head>
 <div class="row row-plain" id="primary-row">
   <div class="col-md-2 col-plain">
     <div class="list-group" data-id="0">
       <?php 
-      $tsqli->query("SELECT * FROM objects WHERE parent=0 ORDER BY position"); 
+      $tsqli->query("SELECT * FROM objects WHERE parent=$root ORDER BY position"); 
       while( $obj = $tsqli->fetch_object() ) { 
       ?>
       <a class="list-group-item object" id="_<?php echo $obj->ID; ?>" data-id="<?php echo $obj->ID; ?>" data-type="<?php echo $obj->type; ?>"><span class="name"><?php echo $obj->name; ?></span><!--<span class="badge position"><?php echo $obj->position; ?></span>--><span class="time badge"><?php echo $obj->time; ?></span></a>
