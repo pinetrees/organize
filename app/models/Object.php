@@ -87,4 +87,26 @@ class Object extends Eloquent {
 		return static::where('ID', $ID)->pluck('parent');
 	}
 
+	public static function sample()
+	{
+		$object = Object::create(array(
+			'name' => 'Object',
+			'position' => 1,
+			'parent' => 1,
+			'type' => 'object'
+		));
+		return $object;
+	}
+
+	public static function sampleAndCleanup()
+	{
+		$object = static::sample();
+		$object->delete();
+	}
+
+	public static function sanitize()
+	{
+		static::where('name', 'Object')->where('parent', 1)->delete();
+	}
+
 }

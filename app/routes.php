@@ -137,16 +137,20 @@ Route::get('/object/type/{ID}', function($ID)
 {
 	print_r( Object::type($ID) );
 });
-Route::get('/object/create', function()
+Route::get('/object/sample', function()
 {
-	Object::create(array(
-		'name' => 'Object',
-		'position' => 1,
-		'parent' => 1,
-		'type' => 'object'
-	));
+	Object::sample();
+});
+Route::get('/object/sample/benchmark', function()
+{
+	Object::sample();
+	echo Utility::lastQueryTime();
 });
 Route::get('/object/delete/{ID}', function($ID)
 {
 	Object::remove($ID);
 });	
+Route::get('/object/sanitize', function()
+{
+	Object::sanitize();
+});
