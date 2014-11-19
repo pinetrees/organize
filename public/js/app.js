@@ -6,6 +6,7 @@ var $element;
 element.attr('data-id', 0);
 var multiselect;
 var selection;
+var $row = $('.row').first();
 $( ".list-group" ).sortable({ items: "> .object", connectWith: '.list-group' }).on( "sortupdate", sortUpdate ).on( "sortreceive", sortReceive ).on( "sortremove", sortRemove );
 $('.row').sortable({ items: "> .col-plain", connectWith: '.row' });
 function sortRemove() {
@@ -13,6 +14,7 @@ function sortRemove() {
   console.log('');
 }
 var received;
+var visible_columns;
 function sortReceive() {
   received = true; 
   if( multiselect == true ) return $.post('/process', { action: 'multitransfer', IDs: selection, position: $div.index(), parent: $(this).attr('data-id') }, function(res){console.log(res); $div.before($div.find('.list-group-item').addClass('object')).remove(); });
@@ -84,15 +86,30 @@ function listClick(e) {
   $(this).addClass('list-group-item-active');
   $group = $(group).sortable({ items: "> .object", connectWith: '.list-group' }).on( "sortupdate", sortUpdate ).on( "sortreceive", sortReceive ).on( "sortremove", sortRemove );
   $column = $(this).closest('.col-plain')
-  $('#primary-row').find('.col-plain').filter(function(){ return ( $(this).index() > $column.index() ); }).remove();
-  $('#primary-row').append($(col).append($group));
+  $row.find('.col-plain').filter(function(){ return ( $(this).index() > $column.index() ); }).remove();
+  columns = $row.find('.col-plain').length;
+  visible_columns = $row.find('.col-plain:visible').length;
+  if( visible_columns == 6 ){
+  //This is good and working to generate new rows
+  //  $row = $(row).clone().insertAfter($row);	
+	console.log('hide');
+	$row.find('.col-plain:visible').first().hide();
+  } 
+  $row.append($(col).append($group));
+  visible_columns = $row.find('.col-plain:visible').length;
+  if( visible_columns <= 5 ) {
+	console.log('show');
+	for( i=0; i < 6 - visible_columns; i++ ){
+		$row.find('.col-plain:hidden').last().show();
+	}
+  }
   $ID = $(this).attr('data-id');
   $type = $(this).attr('data-type');
   $group.attr('data-id', $ID).attr('data-type', $type);
 
 //Populate object
   $.post('/populate', { ID: $ID, type: $type }, function(res) { 
-    console.log(res); 
+    //console.log(res); 
 	global_data.res = res;
     if( res != 'null' )
     $.each($.parseJSON( res ), function(index, value) {

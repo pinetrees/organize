@@ -1,3 +1,4 @@
+var row = '<div class="row row-plain"></div>';
 var col = '<div class="col-md-2 col-plain"></div>';
 var group = '<div class="list-group"></div>'; 
 var span = '<span></span>';
