@@ -109,4 +109,11 @@ class Object extends Eloquent {
 		static::where('name', 'Object')->where('parent', 1)->delete();
 	}
 
+	public static function root()
+	{
+		$root = new Object;
+		$root->ID = 0;
+		return $root;
+	}
+
 }
