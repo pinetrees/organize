@@ -1,7 +1,29 @@
+@font-face {
+    font-family: "Proxima900";
+    src: url("../fonts/proximanova-extrabold.woff") format('woff');
+}
+@font-face {
+    font-family: "Proxima700";
+    src: url("../fonts/proximanova-bold.woff") format('woff');
+}
+@font-face {
+    font-family: "Proxima600";
+    src: url("../fonts/proximanova-semibold.woff") format('woff');
+}
+@font-face {
+    font-family: "Proxima400";
+    src: url("../fonts/proximanova-regular.woff") format('woff');
+}
+body{
+  background: #f9f9f9;
+  font-size: 16px;
+  font-family: 'Proxima400', serif;
+  color: #35373f;
+}
 .list-group {
   width: 210px; 
   width: 100%;
-  font-family: 'Tienne', serif;
+  font-family: 'Proxima400', serif;
   font-size: 19px;
   display: inline-block;
   vertical-align: top;
@@ -28,6 +50,10 @@
 }
 .col-plain {
   padding: 0px;
+}
+.list-group-item {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 .list-group-item > .input-group {
   width: 100%;
@@ -58,4 +84,15 @@
 }
 .time.badge {
 	display: none;
+}
+.list-group-item {
+	padding: 3px 14px;
+	font-size: 15px;
+}
+.col-md-2 {
+	width: inherit !important;
+	max-width: 16.6664% !important;
+}
+.wrapper {
+	width: 2000px;
 }
