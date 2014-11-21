@@ -28,7 +28,8 @@ Route::get('/', function()
 
 Route::get('/path/from/{ID}', function($ID)
 {
-	return View::make('index')->with('objects', Object::children($ID));
+	$ID = Object::ID($ID);
+	return View::make('index')->with('root', Object::find($ID))->with('objects', Object::children($ID));
 });
 
 Route::get('/path/to/{ID}', function($ID)
@@ -46,7 +47,7 @@ Route::post('/register', function()
 {
 	extract(Input::all());
 	$next = Object::next($parent);
-	if( ! $next ) $next = 0;
+	( $next === NULL ) ? $next = 0 : $next += 1;
 	$type = Object::type($parent);
 	$object = Object::create(array(
 		'name' => $name,
@@ -154,3 +155,10 @@ Route::get('/object/sanitize', function()
 {
 	Object::sanitize();
 });
+Route::get('/fix/positions', function()
+{
+	$tsqli = new tsqli("localhost", "root", "root", "laravel_organize");
+	$tsqli->fixPositions_('objects');
+});
+
+View::share('root', Object::root());
