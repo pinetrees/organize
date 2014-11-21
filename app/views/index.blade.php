@@ -1,9 +1,10 @@
 <head>
 @include('head')
 </head>
+<div class="wrapper">
 <div class="row row-plain" id="primary-row">
   <div class="col-md-2 col-plain">
-    <div class="list-group" data-id="0">
+    <div class="list-group" data-id="{{$root->ID}}">
 	  @foreach( $objects as $object )
       <a class="list-group-item object" id="_{{$object->ID}}" data-id="{{$object->ID}}" data-type="{{ $object->type }}">
 		<span class="name">{{ $object->name }}</span>
@@ -25,6 +26,7 @@
   </div>
 </div><!--row-->
 <div class="row row-plain"></div>
+</div>
 
 @include('context')
 @include('foot')
