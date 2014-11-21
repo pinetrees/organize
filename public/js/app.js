@@ -29,7 +29,9 @@ function sortUpdate() {
   console.log('Element parent: ' + element.closest('.list-group').attr('data-id'));
   console.log('Index: ' + element.index());
   console.log('');
-  $.post('/process', { action: 'order', ID: element.attr('data-id'), position: element.index(), parent: $(this).attr('data-id') }, function(res){});
+  $.post('/process', { action: 'order', ID: element.attr('data-id'), position: element.index(), parent: $(this).attr('data-id') }, function(res){
+	console.log(res)
+  });
 }
 $('.list-group-item').mousedown(setElement).mousedown(actionFilters);
 function setElement(e) {
@@ -93,14 +95,14 @@ function listClick(e) {
   //This is good and working to generate new rows
   //  $row = $(row).clone().insertAfter($row);	
 	console.log('hide');
-	$row.find('.col-plain:visible').first().hide();
+	//$row.find('.col-plain:visible').first().hide();
   } 
   $row.append($(col).append($group));
   visible_columns = $row.find('.col-plain:visible').length;
   if( visible_columns <= 5 ) {
-	console.log('show');
+	//console.log('show');
 	for( i=0; i < 6 - visible_columns; i++ ){
-		$row.find('.col-plain:hidden').last().show();
+		//$row.find('.col-plain:hidden').last().show();
 	}
   }
   $ID = $(this).attr('data-id');
