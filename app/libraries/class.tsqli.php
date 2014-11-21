@@ -62,7 +62,8 @@ class tsqli {
 
 	public function get_cell( $query ) {
 
-		return array_shift($this->query( $query )->fetch_row());
+		$result = $this->query( $query )->fetch_row();
+		return array_shift( $result );
 
 	}
 
